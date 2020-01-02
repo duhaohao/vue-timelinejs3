@@ -1,0 +1,23 @@
+{
+  "name": "vue-timelinejs3",
+  "version": "1.0.0",
+  "description": "update NUKnightLab/TimelineJS3(http://timeline.knightlab.com/)",
+  "main": "timeline.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duhaohao/vue-timelinejs3.git"
+  },
+  "keywords": [
+    "timeline",
+    "vue"
+  ],
+  "author": "lubing",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/duhaohao/vue-timelinejs3/issues"
+  },
+  "homepage": "https://github.com/duhaohao/vue-timelinejs3#readme"
+}
