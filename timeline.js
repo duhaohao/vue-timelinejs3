@@ -3684,30 +3684,35 @@ TL.TimelineConfig = TL.Class.extend({
 ********************************************** */
 
 TL.Language = function(options) {
+	console.log('options',options)
 	// borrowed from http://stackoverflow.com/a/14446414/102476
 	for (k in TL.Language.languages.en) {
 		this[k] = TL.Language.languages.en[k];
 	}
-	if (options && options.language && typeof(options.language) == 'string' && options.language != 'en') {
+	if (options && options.language && typeof(options.language) == 'string' && options.language != 'en' && !!options.language_json && typeof(options.language_json) == 'object') {
+		console.log(typeof(options.language_json))
 		var code = options.language;
 		if (!(code in TL.Language.languages)) {
-			if (/\.json$/.test(code)) {
-				var url = code;
-			} else {
-				var fragment = "/locale/" + code + ".json";
-				var script_path = options.script_path || TL.Timeline.source_path;
-				if (/\/$/.test(script_path)) { fragment = fragment.substr(1)}
-				var url = script_path + fragment;
-			}
-			var self = this;
-			var xhr = TL.ajax({
-				url: url, async: false
-			});
-			if (xhr.status == 200) {
-				TL.Language.languages[code] = JSON.parse(xhr.responseText);
-			} else {
-				throw "Could not load language [" + code + "]: " + xhr.statusText;
-			}
+			TL.Language.languages[code] = options.language_json
+			// if (/\.json$/.test(code)) {
+			// 	var url = code;
+			// } else {
+			// 	var fragment = "/locale/" + code + ".json";
+			// 	var script_path = options.script_path || TL.Timeline.source_path;
+			// 	if (/\/$/.test(script_path)) { fragment = fragment.substr(1)}
+			// 	var url = script_path + fragment;
+			// }
+			// var self = this;
+			// var xhr = TL.ajax({
+			// 	url: url, async: false
+			// });
+			// console.log('url',url)
+			// console.log('xhr',xhr)
+			// if (xhr.status == 200) {
+			// 	TL.Language.languages[code] = JSON.parse(xhr.responseText);
+			// } else {
+			// 	throw "Could not load language [" + code + "]: " + xhr.statusText;
+			// }
 		}
 		TL.Util.mergeData(this,TL.Language.languages[code]);
 
